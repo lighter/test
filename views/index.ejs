@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $('#send').on('click',function(){
+          var data = {
+            'account': $('#ajax_account').val(),
+            'pass': $('#ajax_pass').val()
+          };
+          $.post('/sign3', data ,function(data2) {
+            $('#ajax').html(data2);
+            console.log(data2);
+          });
+        });
+      });
+
+    </script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <h1>GET Method</h1>
+    <form action="/sign" method="GET">
+      <table>
+        <tr>
+          <td>Accout<input type="text" name="account" /></td>
+        </tr>
+        <tr>
+          <td>Password<input type="text" name="pass" /></td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="send" /></td>
+        </tr>
+      </table>
+    </form>
+
+    <h1>POST Method</h1>
+    <form action="/sign2" method="POST">
+      <table>
+        <tr>
+          <td>Account<input type="account" name="account" id="account"></td>
+        </tr>
+        <tr>
+          <td>Password<input type="pass" name="pass" id="pass"></td>
+        </tr>
+        <tr>
+          <td><input type="submit" value="send"></td>
+        </tr>
+      </table>
+    </form>
+
+    <h1>AJAX Method</h1>
+    <form action="#">
+      <table>
+        <tr>
+          <td>Account<input type="account" name="account" id="ajax_account"></td>
+        </tr>
+        <tr>
+          <td>Password<input type="pass" name="pass" id="ajax_pass"></td>
+        </tr>
+        <tr>
+          <td><button type="button" id="send">send</button></td>
+        </tr>
+      </table>
+    </form>
+
+    <div id="ajax"></div>
+
+  </body>
+</html>
